@@ -41,47 +41,21 @@ class HerniPole:
 
         self.seznam_pol = []
         for i in range(0,1001, 200):
-            polygon_1 = pygame.draw.polygon(self.obraz, (0,0,0), ((i,1000),(i+100,1000),(i+50,650)))
+            polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,1000),(i+100,1000),(i+50,650)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,1000),(i+200,1000),(i+150,650)))
             self.seznam_pol.append(polygon_1)
             self.seznam_pol.append(polygon_2)
 
-        """for i in range(0,1001, 200):
-            polygon = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,1000),(i+200,1000),(i+150,650)))
-            self.seznam_pol.append(polygon)"""
-
-
-        """self.polygon_12 = pygame.draw.polygon(self.obraz, (0,0,0), ((0,1000),(100,1000),(50,650)))
-        self.polygon_11 = pygame.draw.polygon(self.obraz, (150,0,0), ((100,1000),(200,1000),(150,650)))
-        self.polygon_10 = pygame.draw.polygon(self.obraz, (0,0,0), ((200,1000),(300,1000),(250,650)))
-        self.polygon_9 = pygame.draw.polygon(self.obraz, (150,0,0), ((300,1000),(400,1000),(350,650)))
-        self.polygon_8 = pygame.draw.polygon(self.obraz, (0,0,0), ((400,1000),(500,1000),(450,650)))
-        self.polygon_7 = pygame.draw.polygon(self.obraz, (150,0,0), ((500,1000),(600,1000),(550,650)))
-        self.polygon_6 = pygame.draw.polygon(self.obraz, (0,0,0), ((600,1000),(700,1000),(650,650)))
-        self.polygon_5 = pygame.draw.polygon(self.obraz, (150,0,0), ((700,1000),(800,1000),(750,650)))
-        self.polygon_4 = pygame.draw.polygon(self.obraz, (0,0,0), ((800,1000),(900,1000),(850,650)))
-        self.polygon_3 = pygame.draw.polygon(self.obraz, (150,0,0), ((900,1000),(1000,1000),(950,650)))
-        self.polygon_2 = pygame.draw.polygon(self.obraz, (0,0,0), ((1000,1000),(1100,1000),(1050,650)))
-        self.polygon_1 = pygame.draw.polygon(self.obraz, (150,0,0), ((1100,1000),(1200,1000),(1150,650)))"""
+        self.seznam_pol = []
+        for i in range(0,1001, 200):
+            polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,0),(i+100,0),(i+50,350)))
+            polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,0),(i+200,0),(i+150,350)))
+            self.seznam_pol.append(polygon_1)
+            self.seznam_pol.append(polygon_2)
 
         pygame.draw.rect(self.obraz, (155,155,155), (400,450, 400,100))
         pygame.draw.rect(self.obraz, (255,255,255), (0,475, 200,50))
         pygame.draw.rect(self.obraz, (0,0,0), (1000,475, 200,50))
-
-        self.polygon_13 = pygame.draw.polygon(self.obraz, (150,0,0), ((0,0),(100,0),(50,350)))
-        self.polygon_14 = pygame.draw.polygon(self.obraz, (0,0,0), ((100,0),(200,0),(150,350)))
-        self.polygon_15 = pygame.draw.polygon(self.obraz, (150,0,0), ((200,0),(300,0),(250,350)))
-        self.polygon_16 = pygame.draw.polygon(self.obraz, (0,0,0), ((300,0),(400,0),(350,350)))
-        self.polygon_17 = pygame.draw.polygon(self.obraz, (150,0,0), ((400,0),(500,0),(450,350)))
-        self.polygon_18 = pygame.draw.polygon(self.obraz, (0,0,0), ((500,0),(600,0),(550,350)))
-        self.polygon_19 = pygame.draw.polygon(self.obraz, (150,0,0), ((600,0),(700,0),(650,350)))
-        self.polygon_20 = pygame.draw.polygon(self.obraz, (0,0,0), ((700,0),(800,0),(750,350)))
-        self.polygon_21 = pygame.draw.polygon(self.obraz, (150,0,0), ((800,0),(900,0),(850,350)))
-        self.polygon_22 = pygame.draw.polygon(self.obraz, (0,0,0), ((900,0),(1000,0),(950,350)))
-        self.polygon_23 = pygame.draw.polygon(self.obraz, (150,0,0), ((1000,0),(1100,0),(1050,350)))
-        self.polygon_24 = pygame.draw.polygon(self.obraz, (0,0,0), ((1100,0),(1200,0),(1150,350)))
-         
-        """self.seznam = [self.polygon_1, self.polygon_2, self.polygon_3]"""
 
         pygame.display.flip()
 
@@ -163,12 +137,12 @@ class HerniKamen:
         return print(f"Aktuální pozice = [{self.pozice}]")
     
     def vytvor_zeton(self):
-        """self.kruh_1 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_1.centerx, new.plocha.polygon_1.bottom - self.vyska], 30, 0)
-        self.kruh_2 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_1.centerx, new.plocha.polygon_1.bottom - self.vyska], 30, 0)
-        self.kruh_3 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
-        self.kruh_4 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)"""
+        self.kruh_1 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0)
+        self.kruh_2 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[1].centerx, new.plocha.seznam_pol[1].bottom - self.vyska], 30, 0)
+        """self.kruh_3 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
+        self.kruh_4 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
         self.kruh_5 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_18.centerx, new.plocha.polygon_18.top + self.vyska], 30, 0)
-        self.kruh_6 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_20.centerx, new.plocha.polygon_20.top + self.vyska], 30, 0)
+        self.kruh_6 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_20.centerx, new.plocha.polygon_20.top + self.vyska], 30, 0)"""
 
 class Hrac:
     def __init__(self, jmeno, barva) -> None:
