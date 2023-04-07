@@ -1,4 +1,6 @@
-import sys, pygame, random
+import sys, pygame, random, pygame_widgets
+from pygame_widgets.button import Button
+
 pygame.init()
 pygame.font.init()
 
@@ -25,10 +27,21 @@ class HerniPole:
         self.vyska = 1000
         self.obraz = pygame.display.set_mode((self.sirka,self.vyska))
         self.obraz.fill((255,155,50))
+        
+
+        self.tlacitko_hod = Button(self.obraz, 
+                                   825, 
+                                   460, 
+                                   80, 
+                                   80,
+                                   padding=20,
+                                   text='Hod Kostkou',
+                                   onClick=lambda: new.dvojkoskta.hod_kostkou())
+
 
         self.seznam_pol = []
         for i in range(0,1001, 200):
-            polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,1000),(i+100,1000),(i+50,650)))
+            polygon_1 = pygame.draw.polygon(self.obraz, (0,0,0), ((i,1000),(i+100,1000),(i+50,650)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,1000),(i+200,1000),(i+150,650)))
             self.seznam_pol.append(polygon_1)
             self.seznam_pol.append(polygon_2)
@@ -38,17 +51,17 @@ class HerniPole:
             self.seznam_pol.append(polygon)"""
 
 
-        """self.polygon_12 = pygame.draw.polygon(self.obraz, (100,100,100), ((0,1000),(100,1000),(50,650)))
+        """self.polygon_12 = pygame.draw.polygon(self.obraz, (0,0,0), ((0,1000),(100,1000),(50,650)))
         self.polygon_11 = pygame.draw.polygon(self.obraz, (150,0,0), ((100,1000),(200,1000),(150,650)))
-        self.polygon_10 = pygame.draw.polygon(self.obraz, (100,100,100), ((200,1000),(300,1000),(250,650)))
+        self.polygon_10 = pygame.draw.polygon(self.obraz, (0,0,0), ((200,1000),(300,1000),(250,650)))
         self.polygon_9 = pygame.draw.polygon(self.obraz, (150,0,0), ((300,1000),(400,1000),(350,650)))
-        self.polygon_8 = pygame.draw.polygon(self.obraz, (100,100,100), ((400,1000),(500,1000),(450,650)))
+        self.polygon_8 = pygame.draw.polygon(self.obraz, (0,0,0), ((400,1000),(500,1000),(450,650)))
         self.polygon_7 = pygame.draw.polygon(self.obraz, (150,0,0), ((500,1000),(600,1000),(550,650)))
-        self.polygon_6 = pygame.draw.polygon(self.obraz, (100,100,100), ((600,1000),(700,1000),(650,650)))
+        self.polygon_6 = pygame.draw.polygon(self.obraz, (0,0,0), ((600,1000),(700,1000),(650,650)))
         self.polygon_5 = pygame.draw.polygon(self.obraz, (150,0,0), ((700,1000),(800,1000),(750,650)))
-        self.polygon_4 = pygame.draw.polygon(self.obraz, (100,100,100), ((800,1000),(900,1000),(850,650)))
+        self.polygon_4 = pygame.draw.polygon(self.obraz, (0,0,0), ((800,1000),(900,1000),(850,650)))
         self.polygon_3 = pygame.draw.polygon(self.obraz, (150,0,0), ((900,1000),(1000,1000),(950,650)))
-        self.polygon_2 = pygame.draw.polygon(self.obraz, (100,100,100), ((1000,1000),(1100,1000),(1050,650)))
+        self.polygon_2 = pygame.draw.polygon(self.obraz, (0,0,0), ((1000,1000),(1100,1000),(1050,650)))
         self.polygon_1 = pygame.draw.polygon(self.obraz, (150,0,0), ((1100,1000),(1200,1000),(1150,650)))"""
 
         pygame.draw.rect(self.obraz, (155,155,155), (400,450, 400,100))
@@ -56,33 +69,37 @@ class HerniPole:
         pygame.draw.rect(self.obraz, (0,0,0), (1000,475, 200,50))
 
         self.polygon_13 = pygame.draw.polygon(self.obraz, (150,0,0), ((0,0),(100,0),(50,350)))
-        self.polygon_14 = pygame.draw.polygon(self.obraz, (100,100,100), ((100,0),(200,0),(150,350)))
+        self.polygon_14 = pygame.draw.polygon(self.obraz, (0,0,0), ((100,0),(200,0),(150,350)))
         self.polygon_15 = pygame.draw.polygon(self.obraz, (150,0,0), ((200,0),(300,0),(250,350)))
-        self.polygon_16 = pygame.draw.polygon(self.obraz, (100,100,100), ((300,0),(400,0),(350,350)))
+        self.polygon_16 = pygame.draw.polygon(self.obraz, (0,0,0), ((300,0),(400,0),(350,350)))
         self.polygon_17 = pygame.draw.polygon(self.obraz, (150,0,0), ((400,0),(500,0),(450,350)))
-        self.polygon_18 = pygame.draw.polygon(self.obraz, (100,100,100), ((500,0),(600,0),(550,350)))
+        self.polygon_18 = pygame.draw.polygon(self.obraz, (0,0,0), ((500,0),(600,0),(550,350)))
         self.polygon_19 = pygame.draw.polygon(self.obraz, (150,0,0), ((600,0),(700,0),(650,350)))
-        self.polygon_20 = pygame.draw.polygon(self.obraz, (100,100,100), ((700,0),(800,0),(750,350)))
+        self.polygon_20 = pygame.draw.polygon(self.obraz, (0,0,0), ((700,0),(800,0),(750,350)))
         self.polygon_21 = pygame.draw.polygon(self.obraz, (150,0,0), ((800,0),(900,0),(850,350)))
-        self.polygon_22 = pygame.draw.polygon(self.obraz, (100,100,100), ((900,0),(1000,0),(950,350)))
+        self.polygon_22 = pygame.draw.polygon(self.obraz, (0,0,0), ((900,0),(1000,0),(950,350)))
         self.polygon_23 = pygame.draw.polygon(self.obraz, (150,0,0), ((1000,0),(1100,0),(1050,350)))
-        self.polygon_24 = pygame.draw.polygon(self.obraz, (100,100,100), ((1100,0),(1200,0),(1150,350)))
+        self.polygon_24 = pygame.draw.polygon(self.obraz, (0,0,0), ((1100,0),(1200,0),(1150,350)))
          
         """self.seznam = [self.polygon_1, self.polygon_2, self.polygon_3]"""
 
         pygame.display.flip()
 
+
 class Dvojkostka:
     def __init__(self) -> None:
         self.kostka1 = None
         self.kostka2 = None
+
+        self.tlacitko = True
+
         self.jedna = pygame.image.load('1.png')
         self.dva = pygame.image.load('2.png')
         self.tri = pygame.image.load('3.png')
         self.ctyri = pygame.image.load('4.png')
         self.pet = pygame.image.load('5.png')
         self.sest = pygame.image.load('6.png')
-    
+        
 
     def hod_kostkou(self) -> str:
         self.kostka1 = random.randrange(1,7)
@@ -114,6 +131,8 @@ class Dvojkostka:
             new.plocha.obraz.blit(self.sest, (600,450))
 
         return f"Hodil jsi: [{self.kostka1}, {self.kostka2}]"
+    
+    
 
 class Bar:
     def __init__(self) -> None:
@@ -173,6 +192,7 @@ new.bar.vytvor_zeton_bily()
 new.bar.vytvor_zeton_cerny()
 
 while True:
+    events = pygame.event.get()
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
@@ -182,7 +202,8 @@ while True:
 
     if pygame.key.get_pressed()[pygame.K_k]:
         new.dvojkoskta.hod_kostkou()
-
+    
+    pygame_widgets.update(events)
     pygame.display.update()
 
 #Dodělat základní rozestavení, hlavně nasazování žetonů na sebe
