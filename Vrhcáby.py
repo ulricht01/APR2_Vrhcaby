@@ -46,7 +46,6 @@ class HerniPole:
             self.seznam_pol.append(polygon_1)
             self.seznam_pol.append(polygon_2)
 
-        self.seznam_pol = []
         for i in range(0,1001, 200):
             polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,0),(i+100,0),(i+50,350)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,0),(i+200,0),(i+150,350)))
