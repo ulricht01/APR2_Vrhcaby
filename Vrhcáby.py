@@ -1,4 +1,4 @@
-import sys, pygame, random, pygame_widgets
+import sys, pygame, random, pygame_widgets, lance, os, json
 from pygame_widgets.button import Button
 
 pygame.init()
@@ -6,20 +6,47 @@ pygame.font.init()
 
 class Hra:
     def __init__(self) -> None:
+        self.file_path = './file.json'
+        check_file = os.path.isfile(self.file_path)
+        """if(check_file):
+            print('FILE EXIST!')
+        else:
+            print('FILE NOT EXIST!')"""
         self.dvojkoskta = Dvojkostka()
         self.bar = Bar()
         volba = input("Budeš hrát s hráčem (1), nebo s AI (0)?")
         if volba == "1":
             hrac1 = input("Jméno hráče 1: ")
-            self.Hrac1 = KonzolovyHrac(hrac1, "Bílá")
+            self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
             hrac2 = input("Jméno hráče 2: ")
-            self.Hrac2 = KonzolovyHrac(hrac2, "Černá")
+            self.Hrac2 = KonzolovyHrac(hrac2, "Cerna")
         elif volba == "0":
             hrac1 = input("Jméno hráče 1: ")
-            self.Hrac1 = KonzolovyHrac(hrac1, "Bílá")
+            self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
             hrac2 = input("Jméno Ai 1: ")
-            self.Hrac2 = AiHrac(hrac2, "Černá")
+            self.Hrac2 = AiHrac(hrac2, "Cerna")
         self.plocha = HerniPole()
+
+    def Ulozit(self) -> None:
+        data = {
+            'Bily': self.bar.pocet_zetonu_bila_cil,
+            'Cerny': self.bar.pocet_zetonu_cerna_cil,
+            'Player1': {
+                'Jmeno': self.Hrac1.jmeno,
+                'Barva': self.Hrac1.barva,
+                'Score': self.bar.pocet_zetonu_bila_cil,
+               # 'Pole': self.Hrac1.policko 
+            },
+            'Player2': {
+                'Jmeno': self.Hrac2.jmeno,
+                'Barva': self.Hrac2.barva,
+                'Score': self.bar.pocet_zetonu_cerna_cil,
+               # 'Pole': self.Hrac2.policko 
+            }
+        }
+        with open(self.file_path, 'w') as file:
+            json.dump(data, file)
+    
 
 class HerniPole:
     def __init__(self) -> None:
@@ -121,7 +148,6 @@ class Bar:
         self.zeton = HerniKamen(200,200, (255,255,255))
         self.zeton.vytvor_zeton()
         
-
 class HerniKamen:
     def __init__(self, x, y, barva) -> None:
         self.x = x
@@ -166,17 +192,18 @@ new.bar.vytvor_zeton_cerny()
 
 while True:
     events = pygame.event.get()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: sys.exit()
+    if pygame.mixer.get_busy() != None:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
 
-    if pygame.key.get_pressed()[pygame.K_q]:
-        pygame.quit()
-    
+        if pygame.key.get_pressed()[pygame.K_q]:
+            new.Ulozit()
+            pygame.quit()
 
-    if pygame.key.get_pressed()[pygame.K_k]:
-        new.dvojkoskta.hod_kostkou()
-    
-    pygame_widgets.update(events)
-    pygame.display.update()
+        if pygame.key.get_pressed()[pygame.K_k]:
+            new.dvojkoskta.hod_kostkou()
+        
+        pygame_widgets.update(events)
+        pygame.display.update()
 
 #Dodělat základní rozestavení, hlavně nasazování žetonů na sebe
