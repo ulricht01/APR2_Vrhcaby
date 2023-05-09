@@ -35,7 +35,7 @@ class Hra:
                 'Jmeno': self.Hrac1.jmeno,
                 'Barva': self.Hrac1.barva,
                 'Score': self.bar.pocet_zetonu_bila_cil,
-               # 'Pole': self.Hrac1.policko 
+               # 'Pole': self.Hrac1.polick 
             },
             'Player2': {
                 'Jmeno': self.Hrac2.jmeno,
