@@ -50,20 +50,51 @@ class Hra:
 
 class HerniPole:
     def __init__(self) -> None:
-        self.sirka = 1200
+        self.sirka = 1450
         self.vyska = 1000
         self.obraz = pygame.display.set_mode((self.sirka,self.vyska))
         self.obraz.fill((255,155,50))
         
+        rect = pygame.Rect(1220, 0, 280, 1000)
+        black = (0,0,0)
+        pygame.draw.rect(self.obraz, black, rect)
+        
+        white = (255,255,255)
+        red = (255, 0, 0)
+        blue = (0, 0, 255)
+        font = pygame.font.SysFont("Arial", 15)
+        #player1name = (""+str(self.Hrac1))
+        #player2name = (""+str(self.Hrac2))
+        #current_player = 1
+        #if current_player == 1:
+        #    text_color = red
+        #    current_player_name = player1name
+        #else:
+        #    text_color = blue
+        #    current_player_name = player2name
+
+        text_surface = font.render("Na tahu je hráč:" +str(Hrac), True, white)
+        text_rect = text_surface.get_rect()
+        text_rect.center = (1350, 500)
+        self.obraz.blit(text_surface, text_rect)
 
         self.tlacitko_hod = Button(self.obraz, 
-                                   825, 
-                                   460, 
-                                   80, 
+                                   1290, 
+                                   750, 
+                                   100, 
                                    80,
                                    padding=20,
-                                   text='Hod Kostkou',
+                                   text='Hod Kostkami',
                                    onClick=lambda: new.dvojkoskta.hod_kostkou())
+        
+        self.ulozit_tlacitko = Button(self.obraz, 
+                                      1290,
+                                      110,
+                                      100,
+                                      70,
+                                      padding=20,
+                                      text='Ulozit',
+                                      onClick=lambda: new.Ulozit())
 
 
         self.seznam_pol = []
@@ -207,3 +238,4 @@ while True:
         pygame.display.update()
 
 #Dodělat základní rozestavení, hlavně nasazování žetonů na sebe
+#Musí se předělat kdo je na tahu v textové podobě v levém bloku
