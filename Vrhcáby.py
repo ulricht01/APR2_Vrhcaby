@@ -68,7 +68,7 @@ class HerniPole:
         #current_player = 1
         #if current_player == 1:
         #    text_color = red
-        #    current_player_name = player1nam
+        #    current_player_name = player1name
         #else:
         #    text_color = blue
         #    current_player_name = player2name
