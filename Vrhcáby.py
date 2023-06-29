@@ -25,7 +25,17 @@ class Hra:
             self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
             hrac2 = input("Jméno Ai 1: ")
             self.Hrac2 = AiHrac(hrac2, "Cerna")
-        self.plocha = HerniPole()
+        self.plocha = HerniPole(self.Hrac1, self.Hrac2)
+        self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
+        self.Hrac2 = KonzolovyHrac(hrac2, "Cerna")
+        self.aktualni_hrac = self.Hrac1  # Nastavení počátečního hráče na Hrac1
+
+    def zmenit_tah(self):
+        if self.aktualni_hrac == self.Hrac1:
+            self.aktualni_hrac = self.Hrac2
+        else:
+            self.aktualni_hrac = self.Hrac1
+    
 
     def Ulozit(self) -> None:
         data = {
@@ -46,6 +56,7 @@ class Hra:
         }
         with open(self.file_path, 'w') as file:
             json.dump(data, file)
+        print("Hra byla uložena.")
 
     def Nahrat(self) -> None:
         data = {
@@ -66,34 +77,38 @@ class Hra:
         }
         with open(self.file_path, 'r') as file:
             json.load(file)
-    
+        print("Hra byla nahrána.")
 
 class HerniPole:
-    def __init__(self) -> None:
+    def __init__(self, Hrac1, Hrac2) -> None:
         self.sirka = 1450
         self.vyska = 1000
         self.obraz = pygame.display.set_mode((self.sirka,self.vyska))
         self.obraz.fill((255,155,50))
-        
+        self.hrac1 = Hrac1
+        self.hrac2 = Hrac2
+        self.aktualni_hrac = Hrac1
+
         rect = pygame.Rect(1220, 0, 280, 1000)
         black = (0,0,0)
         pygame.draw.rect(self.obraz, black, rect)
         
+
         white = (255,255,255)
         red = (255, 0, 0)
         blue = (0, 0, 255)
-        font = pygame.font.SysFont("Arial", 15)
-        #player1name = (""+str(self.Hrac1))
-        #player2name = (""+str(self.Hrac2))
-        #current_player = 1
-        #if current_player == 1:
-        #    text_color = red
-        #    current_player_name = player1nam
-        #else:
-        #    text_color = blue
-        #    current_player_name = player2name
+        font = pygame.font.SysFont("Open Sans", 21)
+        player1name = (""+str(self.hrac1))
+        player2name = (""+str(self.hrac2))
+        current_player = 1
+        if current_player == 1:
+            text_color = red
+            current_player_name = player1name
+        else:
+            text_color = blue
+            current_player_name = player2name
 
-        text_surface = font.render("Na tahu je hráč:" +str(Hrac), True, white)
+        text_surface = font.render("Na tahu je hráč: " + self.aktualni_hrac.jmeno, True, white)
         text_rect = text_surface.get_rect()
         text_rect.center = (1350, 500)
         self.obraz.blit(text_surface, text_rect)
@@ -150,7 +165,6 @@ class Dvojkostka:
     def __init__(self) -> None:
         self.kostka1 = None
         self.kostka2 = None
-
         self.tlacitko = True
 
         self.jedna = pygame.image.load('1.png')
