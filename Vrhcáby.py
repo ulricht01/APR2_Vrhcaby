@@ -93,21 +93,8 @@ class HerniPole:
         black = (0,0,0)
         pygame.draw.rect(self.obraz, black, rect)
         
-
         white = (255,255,255)
-        red = (255, 0, 0)
-        blue = (0, 0, 255)
         font = pygame.font.SysFont("Open Sans", 21)
-        player1name = (""+str(self.hrac1))
-        player2name = (""+str(self.hrac2))
-        current_player = 1
-        if current_player == 1:
-            text_color = red
-            current_player_name = player1name
-        else:
-            text_color = blue
-            current_player_name = player2name
-
         text_surface = font.render("Na tahu je hráč: " + self.aktualni_hrac.jmeno, True, white)
         text_rect = text_surface.get_rect()
         text_rect.center = (1350, 500)
@@ -281,4 +268,3 @@ while True:
         pygame.display.update()
 
 #Dodělat základní rozestavení, hlavně nasazování žetonů na sebe
-#Musí se předělat kdo je na tahu v textové podobě v levém bloku
