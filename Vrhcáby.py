@@ -35,7 +35,7 @@ class Hra:
                 'Jmeno': self.Hrac1.jmeno,
                 'Barva': self.Hrac1.barva,
                 'Score': self.bar.pocet_zetonu_bila_cil,
-               # 'Pole': self.Hrac1.polick 
+               # 'Pole': self.Hrac1.policko 
             },
             'Player2': {
                 'Jmeno': self.Hrac2.jmeno,
@@ -46,6 +46,26 @@ class Hra:
         }
         with open(self.file_path, 'w') as file:
             json.dump(data, file)
+
+    def Nahrat(self) -> None:
+        data = {
+            'Bily': self.bar.pocet_zetonu_bila_cil,
+            'Cerny': self.bar.pocet_zetonu_cerna_cil,
+            'Player1': {
+                'Jmeno': self.Hrac1.jmeno,
+                'Barva': self.Hrac1.barva,
+                'Score': self.bar.pocet_zetonu_bila_cil,
+               # 'Pole': self.Hrac1.policko 
+            },
+            'Player2': {
+                'Jmeno': self.Hrac2.jmeno,
+                'Barva': self.Hrac2.barva,
+                'Score': self.bar.pocet_zetonu_cerna_cil,
+               # 'Pole': self.Hrac2.policko 
+            }
+        }
+        with open(self.file_path, 'r') as file:
+            json.load(file)
     
 
 class HerniPole:
@@ -95,6 +115,15 @@ class HerniPole:
                                       padding=20,
                                       text='Ulozit',
                                       onClick=lambda: new.Ulozit())
+        
+        self.nahrat_tlacitko = Button(self.obraz, 
+                                      1290,
+                                      210,
+                                      100,
+                                      70,
+                                      padding=20,
+                                      text='Nahrat',
+                                      onClick=lambda: new.Nahrat())
 
 
         self.seznam_pol = []
