@@ -202,12 +202,14 @@ class Bar:
         self.zeton = None
 
     def vytvor_zeton_cerny(self):
-        self.zeton = HerniKamen(200,200, (0,0,0))
-        self.zeton.vytvor_zeton()
+        self.player1_pieces = [HerniKamen(200,200, (0, 0, 0)) for _ in range(15)]
+        for zeton in self.player1_pieces:
+            zeton.vytvor_zeton()
 
     def vytvor_zeton_bily(self):
-        self.zeton = HerniKamen(200,200, (255,255,255))
-        self.zeton.vytvor_zeton()
+        self.player2_pieces = [HerniKamen(200,200, (255, 255, 255)) for _ in range(15)]
+        for zeton in self.player2_pieces:
+            zeton.vytvor_zeton()
         
 class HerniKamen:
     def __init__(self, x, y, barva) -> None:
@@ -223,8 +225,8 @@ class HerniKamen:
         return print(f"Aktuální pozice = [{self.pozice}]")
     
     def vytvor_zeton(self):
-        self.kruh_1 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0)
-        self.kruh_2 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[1].centerx, new.plocha.seznam_pol[1].bottom - self.vyska], 30, 0)
+        self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0)
+        self.kruh_2 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[23].centerx, new.plocha.seznam_pol[23].bottom - self.vyska], 30, 0)
         """self.kruh_3 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
         self.kruh_4 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
         self.kruh_5 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_18.centerx, new.plocha.polygon_18.top + self.vyska], 30, 0)
