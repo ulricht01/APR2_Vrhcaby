@@ -202,14 +202,12 @@ class Bar:
         self.zeton = None
 
     def vytvor_zeton_cerny(self):
-        self.player1_pieces = [HerniKamen(200,200, (0, 0, 0)) for _ in range(15)]
-        for zeton in self.player1_pieces:
-            zeton.vytvor_zeton()
+        self.zeton = HerniKamen(200,200, (0,0,0))
+        self.zeton.vytvor_zeton()
 
     def vytvor_zeton_bily(self):
-        self.player2_pieces = [HerniKamen(200,200, (255, 255, 255)) for _ in range(15)]
-        for zeton in self.player2_pieces:
-            zeton.vytvor_zeton()
+        self.zeton = HerniKamen(200,200, (255,255,255))
+        self.zeton.vytvor_zeton()
         
 class HerniKamen:
     def __init__(self, x, y, barva) -> None:
@@ -225,12 +223,45 @@ class HerniKamen:
         return print(f"Aktuální pozice = [{self.pozice}]")
     
     def vytvor_zeton(self):
-        self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0)
-        self.kruh_2 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[23].centerx, new.plocha.seznam_pol[23].bottom - self.vyska], 30, 0)
-        """self.kruh_3 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
-        self.kruh_4 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_12.centerx, new.plocha.polygon_12.bottom - self.vyska], 30, 0)
-        self.kruh_5 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_18.centerx, new.plocha.polygon_18.top + self.vyska], 30, 0)
-        self.kruh_6 = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.polygon_20.centerx, new.plocha.polygon_20.top + self.vyska], 30, 0)"""
+        if self.barva == (0,0,0):
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *3 ], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *5 ], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *7], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *9], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *3], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *5], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *7], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *9], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *3], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *5], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[11].bottom - self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[11].bottom - self.vyska *3 ], 30, 0)
+
+        if self.barva == (255,255,255):
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska *3], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska *5], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska *7], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska *9], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *3 ], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *5 ], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *7], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *9], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *3], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *5], 30, 0)
+
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska], 30, 0)
+            self.kruh = pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *3], 30, 0)
 
 class Hrac:
     def __init__(self, jmeno, barva) -> None:
