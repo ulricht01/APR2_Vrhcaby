@@ -15,7 +15,6 @@ class Hra:
         self.dvojkoskta = Dvojkostka()
         self.bar = Bar()
         
-
         volba = input("Budeš hrát s hráčem (1), nebo s AI (0)?")
         if volba == "1":
             hrac1 = input("Jméno hráče 1: ")
@@ -27,6 +26,7 @@ class Hra:
             self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
             hrac2 = input("Jméno Ai 1: ")
             self.Hrac2 = AiHrac(hrac2, "Cerna")
+            
         self.plocha = HerniPole(self.Hrac1, self.Hrac2)
         self.Hrac1 = KonzolovyHrac(hrac1, "Bila")
         self.Hrac2 = KonzolovyHrac(hrac2, "Cerna")
@@ -128,8 +128,8 @@ class HerniPole:
                                       padding=20,
                                       text='Nahrat',
                                       onClick=lambda: new.Nahrat())
-
         self.seznam_pol = []
+        self.seznam_poli = []
         self.polygon_24 = Polygon(24, (100,100,100), ((1000+100,0),(1000+200,0),(1000+150,350)))
         self.polygon_23 = Polygon(23, (150,0,0), ((1000,0),(1000+100,0),(1000+50,350)))
         self.polygon_22 = Polygon(22, (100,100,100), ((800+100,0),(800+200,0),(800+150,350)))
@@ -155,30 +155,30 @@ class HerniPole:
         self.polygon_2 = Polygon(2,(100,100,100), ((1000,1000),(1000+100, 1000),(1000+50, 650)))
         self.polygon_1 = Polygon(1,(150,0,0), ((1000+100,1000),(1000+200, 1000),(1000+150, 650)))
 
-        """self.seznam_pol.append(self.polygon_1)
-        self.seznam_pol.append(self.polygon_2)
-        self.seznam_pol.append(self.polygon_3)
-        self.seznam_pol.append(self.polygon_4)
-        self.seznam_pol.append(self.polygon_5)
-        self.seznam_pol.append(self.polygon_6)
-        self.seznam_pol.append(self.polygon_7)
-        self.seznam_pol.append(self.polygon_8)
-        self.seznam_pol.append(self.polygon_9)
-        self.seznam_pol.append(self.polygon_10)
-        self.seznam_pol.append(self.polygon_11)
-        self.seznam_pol.append(self.polygon_12)
-        self.seznam_pol.append(self.polygon_13)
-        self.seznam_pol.append(self.polygon_14)
-        self.seznam_pol.append(self.polygon_15)
-        self.seznam_pol.append(self.polygon_16)
-        self.seznam_pol.append(self.polygon_17)
-        self.seznam_pol.append(self.polygon_18)
-        self.seznam_pol.append(self.polygon_19)
-        self.seznam_pol.append(self.polygon_20)
-        self.seznam_pol.append(self.polygon_21)
-        self.seznam_pol.append(self.polygon_22)
-        self.seznam_pol.append(self.polygon_23)
-        self.seznam_pol.append(self.polygon_24)"""
+        self.seznam_poli.append(self.polygon_1)
+        self.seznam_poli.append(self.polygon_2)
+        self.seznam_poli.append(self.polygon_3)
+        self.seznam_poli.append(self.polygon_4)
+        self.seznam_poli.append(self.polygon_5)
+        self.seznam_poli.append(self.polygon_6)
+        self.seznam_poli.append(self.polygon_7)
+        self.seznam_poli.append(self.polygon_8)
+        self.seznam_poli.append(self.polygon_9)
+        self.seznam_poli.append(self.polygon_10)
+        self.seznam_poli.append(self.polygon_11)
+        self.seznam_poli.append(self.polygon_12)
+        self.seznam_poli.append(self.polygon_13)
+        self.seznam_poli.append(self.polygon_14)
+        self.seznam_poli.append(self.polygon_15)
+        self.seznam_poli.append(self.polygon_16)
+        self.seznam_poli.append(self.polygon_17)
+        self.seznam_poli.append(self.polygon_18)
+        self.seznam_poli.append(self.polygon_19)
+        self.seznam_poli.append(self.polygon_20)
+        self.seznam_poli.append(self.polygon_21)
+        self.seznam_poli.append(self.polygon_22)
+        self.seznam_poli.append(self.polygon_23)
+        self.seznam_poli.append(self.polygon_24)
         """for i in range(0,1001, 200):
             polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,1000),(i+100,1000),(i+50,650)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,1000),(i+200,1000),(i+150,650)))
@@ -198,11 +198,11 @@ class HerniPole:
         pygame.display.flip()
 
 class Polygon:
-    def __init__(self, cislo_pole, barva, souradnice, zasobnik = []) -> None:
+    def __init__(self, cislo_pole, barva, souradnice, zasobnik = None) -> None:
         self.cislo_pole = cislo_pole
         self.barva = barva
         self.souradnice = souradnice
-        self.zasobnik = zasobnik
+        self.zasobnik = zasobnik if zasobnik is not None else []
 
 
     def vytvor_polygon(self):
@@ -291,56 +291,45 @@ class HerniKamen:
         self.y = y
         self.vyska = 30
         self.sirka = 10
-        self.pozice = 0
         self.barva = barva
-        self.kruh = None
-        self.kruhy = []
 
     def akt_pozice(self) -> str:
         return f"Aktuální pozice = [{self.pozice}]"
     
     def vytvor_zeton(self):
-        print(new.plocha.seznam_pol)
         if self.barva == (0,0,0):
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *3 ], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *5 ], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *7], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *9], 30, 0))
+            for i in range(1, 10, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[0].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[0].bottom - vyska], 30, 0))
+            
+            for i in range(1, 10, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[20].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[5].centerx, new.plocha.seznam_pol[20].top + vyska], 30, 0))
+    
+            for i in range(1, 6, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[18].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[7].centerx, new.plocha.seznam_pol[18].top + vyska], 30, 0))
 
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *3], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *5], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *7], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[19].top + self.vyska *9], 30, 0))
-
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *3], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[17].top + self.vyska *5], 30, 0))
-
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[11].bottom - self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[11].bottom - self.vyska *3 ], 30, 0))
+            for i in range(1, 4, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[11].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[11].bottom - vyska], 30, 0))
 
         if self.barva == (255,255,255):
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *3], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *5], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *7], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *9], 30, 0))
+            for i in range(1, 10, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[12].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + vyska], 30, 0))
 
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *3 ], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *5 ], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *7], 30, 0))  
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *9], 30, 0))
+            for i in range(1, 10, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[5].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[5].centerx, new.plocha.seznam_pol[5].bottom - vyska], 30, 0))
 
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *3], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[6].centerx, new.plocha.seznam_pol[6].bottom - self.vyska *5], 30, 0))
-
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + self.vyska *3], 30, 0))
-        
+            for i in range(1, 6, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[7].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[7].centerx, new.plocha.seznam_pol[7].bottom - vyska], 30, 0))
+            
+            for i in range(1, 4, 2):
+                vyska = self.vyska * i
+                new.plocha.seznam_poli[23].zasobnik.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[23].top + vyska], 30, 0))
 
 class Hrac:
     def __init__(self, jmeno, barva) -> None:
@@ -360,57 +349,15 @@ new = Hra()
 font = pygame.font.SysFont('Arial', 30)
 new.plocha.obraz.blit(font.render(new.Hrac1.jmeno, True, (255,0,0)), (0, 480))
 new.plocha.obraz.blit(font.render(new.Hrac2.jmeno, True, (255,0,0)), (1000, 480))
-new.plocha.polygon_1.vytvor_polygon()
-new.plocha.polygon_2.vytvor_polygon()
-new.plocha.polygon_3.vytvor_polygon()
-new.plocha.polygon_4.vytvor_polygon()
-new.plocha.polygon_5.vytvor_polygon()
-new.plocha.polygon_6.vytvor_polygon()
-new.plocha.polygon_7.vytvor_polygon()
-new.plocha.polygon_8.vytvor_polygon()
-new.plocha.polygon_9.vytvor_polygon()
-new.plocha.polygon_10.vytvor_polygon()
-new.plocha.polygon_11.vytvor_polygon()
-new.plocha.polygon_12.vytvor_polygon()
-new.plocha.polygon_13.vytvor_polygon()
-new.plocha.polygon_14.vytvor_polygon()
-new.plocha.polygon_15.vytvor_polygon()
-new.plocha.polygon_16.vytvor_polygon()
-new.plocha.polygon_17.vytvor_polygon()
-new.plocha.polygon_18.vytvor_polygon()
-new.plocha.polygon_19.vytvor_polygon()
-new.plocha.polygon_20.vytvor_polygon()
-new.plocha.polygon_21.vytvor_polygon()
-new.plocha.polygon_22.vytvor_polygon()
-new.plocha.polygon_23.vytvor_polygon()
-new.plocha.polygon_24.vytvor_polygon()
-""""
-new.plocha.polygon_23.vytvor_polygon()
-new.plocha.polygon_22.vytvor_polygon()
-new.plocha.polygon_21.vytvor_polygon()
-new.plocha.polygon_20.vytvor_polygon()
-new.plocha.polygon_19.vytvor_polygon()
-new.plocha.polygon_18.vytvor_polygon()
-new.plocha.polygon_17.vytvor_polygon()
-new.plocha.polygon_16.vytvor_polygon()
-new.plocha.polygon_15.vytvor_polygon()
-new.plocha.polygon_14.vytvor_polygon()
-new.plocha.polygon_13.vytvor_polygon()
-new.plocha.polygon_12.vytvor_polygon()
-new.plocha.polygon_11.vytvor_polygon()
-new.plocha.polygon_10.vytvor_polygon()
-new.plocha.polygon_9.vytvor_polygon()
-new.plocha.polygon_8.vytvor_polygon()
-new.plocha.polygon_7.vytvor_polygon()
-new.plocha.polygon_6.vytvor_polygon()
-new.plocha.polygon_5.vytvor_polygon()
-new.plocha.polygon_4.vytvor_polygon()
-new.plocha.polygon_3.vytvor_polygon()
-new.plocha.polygon_2.vytvor_polygon()
-new.plocha.polygon_1.vytvor_polygon()
-"""
+
+for i in range(1, 25):
+    getattr(new.plocha, f"polygon_{i}").vytvor_polygon()
+
 new.bar.vytvor_zeton_cerny()
 new.bar.vytvor_zeton_bily()
+
+print(len(new.plocha.seznam_poli[0].zasobnik))
+
 while True:
     events = pygame.event.get()
     for event in events:
