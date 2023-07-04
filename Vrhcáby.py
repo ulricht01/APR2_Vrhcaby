@@ -14,6 +14,8 @@ class Hra:
             print('FILE NOT EXIST!')"""
         self.dvojkoskta = Dvojkostka()
         self.bar = Bar()
+        
+
         volba = input("Budeš hrát s hráčem (1), nebo s AI (0)?")
         if volba == "1":
             hrac1 = input("Jméno hráče 1: ")
@@ -127,9 +129,57 @@ class HerniPole:
                                       text='Nahrat',
                                       onClick=lambda: new.Nahrat())
 
-
         self.seznam_pol = []
-        for i in range(0,1001, 200):
+        self.polygon_24 = Polygon(24, (100,100,100), ((1000+100,0),(1000+200,0),(1000+150,350)))
+        self.polygon_23 = Polygon(23, (150,0,0), ((1000,0),(1000+100,0),(1000+50,350)))
+        self.polygon_22 = Polygon(22, (100,100,100), ((800+100,0),(800+200,0),(800+150,350)))
+        self.polygon_21 = Polygon(21, (150,0,0), ((800,0),(800+100,0),(800+50,350)))
+        self.polygon_20 = Polygon(20, (100,100,100), ((600+100,0),(600+200,0),(600+150,350)))
+        self.polygon_19 = Polygon(19, (150,0,0), ((600,0),(600+100,0),(600+50,350)))
+        self.polygon_18 = Polygon(18, (100,100,100), ((400+100,0),(400+200,0),(400+150,350)))
+        self.polygon_17 = Polygon(17, (150,0,0), ((400,0),(400+100,0),(400+50,350)))
+        self.polygon_16 = Polygon(16, (100,100,100), ((200+100,0),(200+200,0),(200+150,350)))
+        self.polygon_15 = Polygon(15, (150,0,0), ((200,0),(200+100,0),(200+50,350)))
+        self.polygon_14 = Polygon(14, (100,100,100), ((0+100,0),(0+200,0),(0+150,350)))
+        self.polygon_13 = Polygon(13, (150,0,0), ((0,0),(0+100,0),(0+50,350)))
+        self.polygon_12 = Polygon(12,(100,100,100), ((0,1000),(0+100, 1000),(0+50, 650)))
+        self.polygon_11 = Polygon(11,(150,0,0), ((0+100,1000),(0+200, 1000),(0+150, 650)))
+        self.polygon_10 = Polygon(10,(100,100,100), ((200,1000),(200+100, 1000),(200+50, 650)))
+        self.polygon_9 = Polygon(9,(150,0,0), ((200+100,1000),(200+200, 1000),(200+150, 650)))
+        self.polygon_8 = Polygon(8,(100,100,100), ((400,1000),(400+100, 1000),(400+50, 650)))
+        self.polygon_7 = Polygon(7,(150,0,0), ((400+100,1000),(400+200, 1000),(400+150, 650)))
+        self.polygon_6 = Polygon(6,(100,100,100), ((600,1000),(600+100, 1000),(600+50, 650)))
+        self.polygon_5 = Polygon(5,(150,0,0), ((600+100,1000),(600+200, 1000),(600+150, 650)))
+        self.polygon_4 = Polygon(4,(100,100,100), ((800,1000),(800+100, 1000),(800+50, 650)))
+        self.polygon_3 = Polygon(3,(150,0,0), ((800+100,1000),(800+200, 1000),(800+150, 650)))
+        self.polygon_2 = Polygon(2,(100,100,100), ((1000,1000),(1000+100, 1000),(1000+50, 650)))
+        self.polygon_1 = Polygon(1,(150,0,0), ((1000+100,1000),(1000+200, 1000),(1000+150, 650)))
+
+        self.seznam_pol.append(self.polygon_1)
+        self.seznam_pol.append(self.polygon_2)
+        self.seznam_pol.append(self.polygon_3)
+        self.seznam_pol.append(self.polygon_4)
+        self.seznam_pol.append(self.polygon_5)
+        self.seznam_pol.append(self.polygon_6)
+        self.seznam_pol.append(self.polygon_7)
+        self.seznam_pol.append(self.polygon_8)
+        self.seznam_pol.append(self.polygon_9)
+        self.seznam_pol.append(self.polygon_10)
+        self.seznam_pol.append(self.polygon_11)
+        self.seznam_pol.append(self.polygon_12)
+        self.seznam_pol.append(self.polygon_13)
+        self.seznam_pol.append(self.polygon_14)
+        self.seznam_pol.append(self.polygon_15)
+        self.seznam_pol.append(self.polygon_16)
+        self.seznam_pol.append(self.polygon_17)
+        self.seznam_pol.append(self.polygon_18)
+        self.seznam_pol.append(self.polygon_19)
+        self.seznam_pol.append(self.polygon_20)
+        self.seznam_pol.append(self.polygon_21)
+        self.seznam_pol.append(self.polygon_22)
+        self.seznam_pol.append(self.polygon_23)
+        self.seznam_pol.append(self.polygon_24)
+        """for i in range(0,1001, 200):
             polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,1000),(i+100,1000),(i+50,650)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,1000),(i+200,1000),(i+150,650)))
             self.seznam_pol.append(polygon_1)
@@ -139,13 +189,40 @@ class HerniPole:
             polygon_1 = pygame.draw.polygon(self.obraz, (100,100,100), ((i,0),(i+100,0),(i+50,350)))
             polygon_2 = pygame.draw.polygon(self.obraz, (150,0,0), ((i+100,0),(i+200,0),(i+150,350)))
             self.seznam_pol.append(polygon_1)
-            self.seznam_pol.append(polygon_2)
+            self.seznam_pol.append(polygon_2)"""
 
         pygame.draw.rect(self.obraz, (155,155,155), (400,450, 400,100))
         pygame.draw.rect(self.obraz, (255,255,255), (0,475, 200,50))
         pygame.draw.rect(self.obraz, (0,0,0), (1000,475, 200,50))
 
         pygame.display.flip()
+
+class Polygon:
+    def __init__(self, cislo_pole, barva, souradnice, zasobnik = [], seznam_pol = []) -> None:
+        self.cislo_pole = cislo_pole
+        self.barva = barva
+        self.souradnice = souradnice
+        self.zasobnik = zasobnik
+        self.seznam_pol = seznam_pol
+
+
+    def vytvor_polygon(self):
+        polygon = pygame.draw.polygon(new.plocha.obraz, (self.barva), (self.souradnice))
+        self.seznam_pol.append(polygon)
+
+    def pridej_kruh(self):
+        if len(self.zasobnik<5):
+            self.zasobnik = self.zasobnik + 1
+        else:
+            print("Plný zásobník!")
+
+    def sundej_kruh(self):
+        if len(self.zasobnik > 0):
+            self.zasobnik = self.zasobnik - 1
+        else:
+            print("Prázdný zásobník") 
+
+
 
 
 class Dvojkostka:
@@ -224,9 +301,8 @@ class HerniKamen:
         return f"Aktuální pozice = [{self.pozice}]"
     
     def vytvor_zeton(self):
-
-
-        if self.barva == (0,0,0):
+        print(new.plocha.seznam_pol)
+        """if self.barva == (0,0,0):
             self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska], 30, 0))
             self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *3 ], 30, 0))
             self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[0].centerx, new.plocha.seznam_pol[0].bottom - self.vyska *5 ], 30, 0))
@@ -264,8 +340,8 @@ class HerniKamen:
             self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[4].centerx, new.plocha.seznam_pol[4].bottom - self.vyska *5], 30, 0))
 
             self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska], 30, 0))
-            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *3], 30, 0))
-
+            self.kruhy.append(pygame.draw.circle(new.plocha.obraz, self.barva, [new.plocha.seznam_pol[11].centerx, new.plocha.seznam_pol[12].top + self.vyska *3], 30, 0))"""
+        
 
 class Hrac:
     def __init__(self, jmeno, barva) -> None:
@@ -285,7 +361,33 @@ new = Hra()
 font = pygame.font.SysFont('Arial', 30)
 new.plocha.obraz.blit(font.render(new.Hrac1.jmeno, True, (255,0,0)), (0, 480))
 new.plocha.obraz.blit(font.render(new.Hrac2.jmeno, True, (255,0,0)), (1000, 480))
-new.bar.vytvor_zeton_bily()
+#new.bar.vytvor_zeton_bily()
+
+new.plocha.polygon_24.vytvor_polygon()
+new.plocha.polygon_23.vytvor_polygon()
+new.plocha.polygon_22.vytvor_polygon()
+new.plocha.polygon_21.vytvor_polygon()
+new.plocha.polygon_20.vytvor_polygon()
+new.plocha.polygon_19.vytvor_polygon()
+new.plocha.polygon_18.vytvor_polygon()
+new.plocha.polygon_17.vytvor_polygon()
+new.plocha.polygon_16.vytvor_polygon()
+new.plocha.polygon_15.vytvor_polygon()
+new.plocha.polygon_14.vytvor_polygon()
+new.plocha.polygon_13.vytvor_polygon()
+new.plocha.polygon_12.vytvor_polygon()
+new.plocha.polygon_11.vytvor_polygon()
+new.plocha.polygon_10.vytvor_polygon()
+new.plocha.polygon_9.vytvor_polygon()
+new.plocha.polygon_8.vytvor_polygon()
+new.plocha.polygon_7.vytvor_polygon()
+new.plocha.polygon_6.vytvor_polygon()
+new.plocha.polygon_5.vytvor_polygon()
+new.plocha.polygon_4.vytvor_polygon()
+new.plocha.polygon_3.vytvor_polygon()
+new.plocha.polygon_2.vytvor_polygon()
+new.plocha.polygon_1.vytvor_polygon()
+
 new.bar.vytvor_zeton_cerny()
 
 while True:
